@@ -3,3 +3,6 @@ OS_2023
 
 push test
 
+
+`:wq
+
