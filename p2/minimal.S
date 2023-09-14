@@ -13,5 +13,5 @@ _start:
     syscall
 
 st:
-    .ascii "\033[01;31mHello, OS World\033[0m\n"
+    .ascii "\033[01;32mHello, OS World\033[0m\n"
 ed:
