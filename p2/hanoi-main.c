@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "hanoi-r.c"
+#include "hanoi-nr.c"
 
 int main(){
     hanoi(3, 'A', 'B', 'C');

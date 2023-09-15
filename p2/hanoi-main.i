@@ -814,17 +814,50 @@ extern void __assert (const char *__assertion, const char *__file, int __line)
 
 # 3 "hanoi-main.c" 2
 
-# 1 "hanoi-r.c" 1
+# 1 "hanoi-nr.c" 1
 
-# 1 "hanoi-r.c"
+# 1 "hanoi-nr.c"
+typedef struct {
+    int pc, n;
+    char from, to, via;
+} Frame;
+
+
+
+
+
 void hanoi(int n, char from, char to, char via){
-    if( n == 1){
-        printf("%c -> %c\n", from, to);
-    }
-    else{
-        hanoi(n - 1, from, via, to);
-        hanoi(1, from, to, via);
-        hanoi(n - 1, via, to, from);
+    Frame stk[64], *top = stk -1;
+    ({ *(++top) = (Frame){ .pc = 0, n, from, to, via};});
+    for (Frame *f; (f = top) >= stk; f->pc++){
+        n = f->n;
+        from = f->from;
+        to = f->to;
+        via = f->via;
+        switch ( f->pc ){
+            case 0: if (n == 1){printf("%c -> %c\n", from, to); ({f->pc = (4) -1;});} break;
+            case 1: ({ *(++top) = (Frame){ .pc = 0, n - 1, from, via, to};}); break;
+            case 2: ({ *(++top) = (Frame){ .pc = 0, 1, from, to, via};}); break;
+            case 3: ({ *(++top) = (Frame){ .pc = 0, n - 1, via, to, from};}); break;
+            case 4: ({top--;}); break;
+            default: 
+# 24 "hanoi-nr.c" 3 4
+                    ((void) sizeof ((
+# 24 "hanoi-nr.c"
+                    0
+# 24 "hanoi-nr.c" 3 4
+                    ) ? 1 : 0), __extension__ ({ if (
+# 24 "hanoi-nr.c"
+                    0
+# 24 "hanoi-nr.c" 3 4
+                    ) ; else __assert_fail (
+# 24 "hanoi-nr.c"
+                    "0"
+# 24 "hanoi-nr.c" 3 4
+                    , "hanoi-nr.c", 24, __extension__ __PRETTY_FUNCTION__); }))
+# 24 "hanoi-nr.c"
+                             ;
+        }
     }
 }
 # 5 "hanoi-main.c" 2
